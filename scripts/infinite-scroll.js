@@ -538,7 +538,7 @@ var updateProgress = function () {
     var height = $(content).height(); 
     var percent = Math.round(scroll * 100 / height); 
     let progress = pathLength  - (scroll * pathLength / height);
-    const res = progress > 0 ? progress : 307 + (progress % 307);
+    const res = progress > 0 ? progress : 306 + (progress % 306);
     console.log(res);
     // update dashOffset
     progressPath.style.strokeDashoffset = res;
