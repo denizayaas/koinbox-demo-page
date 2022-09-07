@@ -1,4 +1,47 @@
+// progress start
+
+var progressPath = document.querySelector('.progress path');
+var pathLength = progressPath.getTotalLength();
+progressPath.style.transition = progressPath.style.WebkitTransition =
+    'none';
+progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
+progressPath.style.strokeDashoffset = pathLength;
+progressPath.getBoundingClientRect();
+progressPath.style.transition = progressPath.style.WebkitTransition =
+    'stroke-dashoffset 50ms linear';
+
+var updateProgress = function () {
+    const content = $("#infiniteContent>div:last-child")
+    var scroll = $(document).scrollTop();
+    var height = $(content).height();
+    var percent = Math.round(scroll * 100 / height);
+    let progress = pathLength - (scroll * pathLength / height);
+    const res = progress > 0 ? progress : 306 + (progress % 306);
+    console.log(res);
+    progressPath.style.strokeDashoffset = res;
+
+}
+
+$(window).scroll(updateProgress);
+updateProgress();
+
 // infinite scroll
+
+function initScroll() {
+    var t = $("#infiniteContent").offset().top;
+    var h = $("#infiniteContent").height();
+    var ws = $(window).scrollTop();
+    var dh = $(document).height();
+    var wh = $(window).height();
+
+    if (dh - (wh + ws) < dh - (h + t)) {
+        $(window).off('scroll');
+        var p = $("#infiniteContent").attr("data-page");
+        if (p) {
+            appendTemplate(jsonre);
+        }
+    }
+}
 
 var t = $("#infiniteContent").offset().top;
 var h = $("#infiniteContent").height();
@@ -19,14 +62,14 @@ $(document).ready(function () {
 function appendTemplate(jsonre, pageNumber) {
     for (var i = 1; i < 2; i++) {
         $("#infiniteContent").append(`<div class="page-content px-1">
-      <div class="mt-5 breadcrumb unread-zone">
+      <div class="mt-3 breadcrumb unread-zone">
           <a href="" target="_blank" rel="noopener">
               <i class="fa-solid fa-house house-icon">
               </i>
               <span class="pl-2">Anasayfa</span>
           </a>
-          <a href="https://www.koinbox.net/analiz" class="pl-4" target="_blank" rel="noopener">Analiz</a>
-          <span class="pl-4 bread-text breadcrumbSubstr">Ethereum İvmekk Kaybediyor: Yeni Bir Düşüş Yakın
+          <a href="" class="pl-4" target="_blank" rel="noopener">Analiz</a>
+          <span class="pl-4 bread-text breadcrumbSubstr">Ethereum İvme Kaybediyor: Yeni Bir Düşüş Yakın
               mı?</span>
       </div>
       <div class="row gx-4 gy-4">
@@ -39,7 +82,7 @@ function appendTemplate(jsonre, pageNumber) {
                   <div class="news-more-info">
                       <div class="row gx-3 gy-3 justify-content-between align-items-center">
                           <div class="col-md-4">
-                              <a href="https://www.koinbox.net/yazar/aysel-basaran"
+                              <a href=""
                                   style="text-decoration:none" target="_blank" rel="noopener">
                                   <div class="author justify-content-center justify-content-md-start">
                                       <div class="author-detail">
@@ -68,7 +111,7 @@ function appendTemplate(jsonre, pageNumber) {
                               </div>
                               <div class="d-flex">
                                   <div class="news-action google-news ms-0">
-                                      <a href="https://news.google.com/publications/CAAiEMYG6c1gz_VQX-pjnh5eYoMqFAgKIhDGBunNYM_1UF_qY54eXmKD?hl=tr&amp;gl=TR&amp;ceid=TR%3Atr"
+                                      <a href=""
                                           target="_blank" rel="noopener nofollow">
                                           <img class="sub-image"
                                               src="https://www.koinbox.net/assets/frontend/resources/images/google-news.svg">
@@ -78,7 +121,7 @@ function appendTemplate(jsonre, pageNumber) {
                                   </div>
                                   <div class="flipboard" style="margin-left: 0.6rem;">
                                       <a data-flip-widget="ico"
-                                          href="https://flipboard.com/@Koinbox?utm_campaign=tools&amp;utm_medium=follow&amp;action=follow"
+                                          href=""
                                           target="_blank" rel="noopener nofollow">
                                           <img src="https://cdn.flipboard.com/badges/flipboard_srrw.png"
                                               alt="Flipboard">
@@ -114,7 +157,7 @@ function appendTemplate(jsonre, pageNumber) {
                       <ol>
                           <li class="first last">
                               <a
-                                  href="https://www.koinbox.net/ethereum-ivme-kaybediyor-yeni-bir-dusus-yakin-mi#ethereum-fiyati-1-550-dolara-duesebilir">Ethereum
+                                  href="">Ethereum
                                   Fiyatı 1,550 Dolara Düşebilir
                               </a>
                           </li>
@@ -229,7 +272,7 @@ function appendTemplate(jsonre, pageNumber) {
                   </p>
               </div>
               <div class="tags">
-                  <a class="tag" href="https://www.koinbox.net/etiket/ethereum" target="_blank"
+                  <a class="tag" href="" target="_blank"
                       rel="noopener">Ethereum
                   </a>
               </div>
@@ -240,7 +283,7 @@ function appendTemplate(jsonre, pageNumber) {
                   ve editörlerimiz, sizlerin sorularını cevaplayacaktır.
               </article>
               <div class="content-spacer sm"></div>
-              <div class="comment-box">
+              <div class="comment-box mb-5">
                   <div class="right-menu-border emoji-menu">
                       <span class="title">Haber Hakkında Bir İfade Bırak</span>
                       <ul class="more-menu pt-3">
@@ -337,7 +380,7 @@ function appendTemplate(jsonre, pageNumber) {
               <div class="list-posts">
                   <span class="aside-title-sec like-h3">Analiz Haberleri</span>
                   <a class="list-post"
-                      href="https://www.koinbox.net/shiba-inu-subattan-once-o-seviyeye-yukselebilir"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Shiba Inu (SHIB), Şubat Ayından Önce O <br>
                           Seviyeye Yükselebilir</span>
@@ -347,7 +390,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/stellar-baski-altinda-o-seviyeye-cikabilir-mi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Stellar (XLM) Fiyatı Baskı Altında! O <br>
                           Seviyeye Çıkabilecek mi?</span>
@@ -357,7 +400,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/stellar-baski-altinda-o-seviyeye-cikabilir-mi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Shiba Inu (SHIB) Fiyat Analizi: Grafik <br>
                           Patlamaya Yakın!</span>
@@ -367,7 +410,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/stellar-baski-altinda-o-seviyeye-cikabilir-mi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">ApeCoin Neden Yükseliyor? İşte APE <br>
                           Çılgınlığının Perde Arkası..</span>
@@ -377,7 +420,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/stellar-baski-altinda-o-seviyeye-cikabilir-mi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">22 Ocak Bitcoin Fiyat Tahmini: Dikkat! <br>
                           Fiyat Daha Fazla Düşebilir</span>
@@ -387,7 +430,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/stellar-baski-altinda-o-seviyeye-cikabilir-mi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Bitcoin'in Çöküşü: Ayılar Bu Seviyeyi <br>
                           İstiyor!</span>
@@ -401,7 +444,7 @@ function appendTemplate(jsonre, pageNumber) {
               <div class="list-posts">
                   <span class="aside-title-sec like-h3">Son Dakika Haberleri</span>
                   <a class="list-post"
-                      href="https://www.koinbox.net/ethereum-ivme-kazandi-eth-fiyatinda-hedef-ne"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Ethereum İvme Kazandı: ETH Fiyatında <br>
                           Hedef Ne?</span>
@@ -411,7 +454,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/bitcoin-madencilik-zorlugu-bu-hafta-yeni-bir-zirveye-ulasabilir"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Bitcoin Madencilik Zorluğu Bu Hafta Yeni <br>
                           Bir Zirveye Ulaşabilir</span>
@@ -421,7 +464,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/bitcoin-20000-dolarin-altina-dustu-daha-fazla-kayip-olur-mu"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Bitcoin 20.000 Doların Altına Düştü, Daha <br>
                           Fazla Kayıp Olur mu?</span>
@@ -431,7 +474,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/2022-bitcoin-cokusunu-bilen-analist-bitcoinden-bunu-bekliyor"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">2022 Bitcoin Çöküşünü Bilen Analist <br>
                           Bitcoin'den Bunu Bekliyor</span>
@@ -441,7 +484,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/bitcoin-fiyatinda-bu-durum-yeni-bir-dususu-tetikleyebilir"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Bitcoin Fiyatında Bu Durum Yeni Bir <br>
                           Düşüşü Tetikleyebilir</span>
@@ -451,7 +494,7 @@ function appendTemplate(jsonre, pageNumber) {
                       </div>
                   </a>
                   <a class="list-post"
-                      href="https://www.koinbox.net/ethereum-birlesme-tarihi-ve-dakikasi-aciklandi"
+                      href=""
                       target="_blank" rel="noopener">
                       <span class="list-post-title like-h2">Ethereum Birleşme Tarihi ve Dakikası <br>
                           Açıklandı</span>
@@ -476,7 +519,7 @@ function appendTemplate(jsonre, pageNumber) {
                   <script charset="utf-8" src="https://platform.twitter.com/widgets.js" async=""></script>
                   </p>
               </div>
-              <a href="https://t.me/koinbox_lounge" target="_blank" rel="noopener">
+              <a href="" target="_blank" rel="noopener">
                   <img src="https://www.koinbox.net/storage/47815/conversions/anasayfa-sidebar-banner-2-webp.webp"
                       alt="Koinbox Lounge" class="ad-img img-responsive ps-md-3">
               </a>
@@ -520,51 +563,6 @@ function appendTemplate(jsonre, pageNumber) {
 }
 
 // infitine scroll end
-
-// progress start
-
-var progressPath = document.querySelector('.progress path');
-var pathLength = progressPath.getTotalLength();
-progressPath.style.transition = progressPath.style.WebkitTransition =
-    'none';
-progressPath.style.strokeDasharray = pathLength + ' ' + pathLength;
-progressPath.style.strokeDashoffset = pathLength;
-progressPath.getBoundingClientRect();
-progressPath.style.transition = progressPath.style.WebkitTransition =
-    'stroke-dashoffset 50ms linear';
-
-var updateProgress = function () {
-    const content = $("#infiniteContent>div:last-child")
-    var scroll = $(document).scrollTop();
-    var height = $(content).height();
-    var percent = Math.round(scroll * 100 / height);
-    let progress = pathLength - (scroll * pathLength / height);
-    const res = progress > 0 ? progress : 306 + (progress % 306);
-    console.log(res);
-    progressPath.style.strokeDashoffset = res;
-
-}
-
-$(window).scroll(updateProgress);
-updateProgress();
-
-//end
-
-function initScroll() {
-    var t = $("#infiniteContent").offset().top;
-    var h = $("#infiniteContent").height();
-    var ws = $(window).scrollTop();
-    var dh = $(document).height();
-    var wh = $(window).height();
-
-    if (dh - (wh + ws) < dh - (h + t)) {
-        $(window).off('scroll');
-        var p = $("#infiniteContent").attr("data-page");
-        if (p) {
-            appendTemplate(jsonre);
-        }
-    }
-}
 
 // hamburger icon start
 
