@@ -19,7 +19,7 @@ $(document).ready(function () {
 function appendTemplate(jsonre, pageNumber) {
     for (var i = 1; i < 2; i++) {
         $("#infiniteContent").append(`<div class="page-content px-1">
-      <div class="breadcrumb unread-zone">
+      <div class="mt-5 breadcrumb unread-zone">
           <a href="" target="_blank" rel="noopener">
               <i class="fa-solid fa-house house-icon">
               </i>
